@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import csv
+import sys
 
 def parse_lowrance(sounding_file, nav_file, write_filename="out.csv"):
 	''' Extracts the critical information from the files in order to write master data file'''
@@ -75,12 +76,19 @@ def plot_xyz(xyz_file):
 
 
 if __name__ == '__main__':
+	args = sys.argv
+
 	# File of the Sounding Data
-	site_reading = '/home/vpreston/Documents/courses/2.688/Project/Sonar0002_sl3.txt'
+	# site_reading = '/home/vpreston/Documents/courses/2.688/Project/Sonar0002_sl3.txt'
+	site_reading = args[1]
+
 	# File of the Lowrance Navigation Data
-	site_nav = '/home/vpreston/Documents/courses/2.688/Project/Sonar0002_sl3.csv'
+	# site_nav = '/home/vpreston/Documents/courses/2.688/Project/Sonar0002_sl3.csv'
+	site_nav = args[2]
+
 	# File of XYZ values parsed by SonarWiz
-	site_xyz = '/home/vpreston/Documents/courses/2.688/Project/kelp/Sonar0002_sl3.xyz'	
+	# site_xyz = '/home/vpreston/Documents/courses/2.688/Project/kelp/Sonar0002_sl3.xyz'
+	site_xyz = args[3]
 
 	# Create a CSV file of the sounding and navigation data
 	parse_lowrance(site_reading, site_nav, 'out_all.csv')
